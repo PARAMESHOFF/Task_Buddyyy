@@ -34,13 +34,14 @@ body {
   gap: 10px;
 }
 
+/* Input + button wrapper */
 #inp {
   display: flex;
   gap: 8px;
   flex: 1;
   padding: 8px;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 12px;
   background: #fff;
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
@@ -57,6 +58,7 @@ body {
   background: transparent;
 }
 
+/* Add Task button */
 #inp button {
   background: linear-gradient(135deg, #22c55e, #16a34a);
   color: #022c22;
@@ -77,6 +79,62 @@ body {
   transform: scale(0.95);
 }
 
+/* =========================
+   SELECT (PRIORITY & CATEGORY)
+========================= */
+
+#btns {
+  display: flex;
+  gap: 10px;
+}
+
+#btns select {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #e5e7eb;
+  padding: 10px 36px 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, #9ca3af 50%),
+    linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(50% - 4px),
+    calc(100% - 13px) calc(50% - 4px);
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+
+#btns select:hover {
+  border-color: #22c55e;
+}
+
+#btns select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+
+/* Light mode fix */
+body:not(.dark) #btns select {
+  background: #ffffff;
+  color: #111;
+  border-color: #e5e7eb;
+}
+
+/* Dropdown options (limited browser support) */
+body.dark select option {
+  background-color: #020617;
+  color: #e5e7eb;
+}
+
+body.dark select option:checked {
+  background-color: #16a34a;
+  color: #022c22;
+}
 
 /* =========================
    TASK LIST
@@ -94,7 +152,7 @@ body {
   align-items: center;
   background: #fff;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 8px;
   border: 1px solid #eee;
   animation: fadeSlide 0.25s ease;
@@ -212,6 +270,7 @@ body.dark .progress {
   background: linear-gradient(90deg, #22c55e, #4ade80);
 }
 
+/* Dark mode toggle */
 .dark-toggle {
   margin-top: 10px;
   background: transparent;
@@ -240,38 +299,66 @@ body.dark .dark-toggle {
     transform: translateY(0);
   }
 }
-#btns select {
-  appearance: none;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #e5e7eb;
+/* =========================
+   CUSTOM SELECT (B/W)
+========================= */
+
+.custom-select {
+  position: relative;
+  min-width: 120px;
+}
+
+/* Trigger button */
+.select-trigger {
+  width: 100%;
+  background: #ffffff;
+  border: 1.5px solid #111;
+  color: #111;
   padding: 10px 14px;
   border-radius: 12px;
   font-size: 14px;
   cursor: pointer;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#btns select:hover {
-  border-color: #22c55e;
+/* Arrow */
+.select-trigger .arrow {
+  font-size: 12px;
 }
 
-#btns select:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
-}
-body:not(.dark) #btns select {
+/* Dropdown list */
+.select-options {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
   background: #ffffff;
-  color: #111;
-  border-color: #e5e7eb;
+  border: 1.5px solid #111;
+  border-radius: 12px;
+  list-style: none;
+  padding: 6px;
+  margin: 0;
+  z-index: 10;
 }
-#btns select {
-  background-image:
-    linear-gradient(45deg, transparent 50%, #9ca3af 50%),
-    linear-gradient(135deg, #9ca3af 50%, transparent 50%);
-  background-position:
-    calc(100% - 18px) calc(50% - 4px),
-    calc(100% - 13px) calc(50% - 4px);
-  background-size: 5px 5px;
-  background-repeat: no-repeat;
+
+/* Option item */
+.select-options li {
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Hover */
+.select-options li:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* Selected */
+.select-options li.selected {
+  background: #111;
+  color: #fff;
 }
